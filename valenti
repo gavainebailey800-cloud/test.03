@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Question 💌</title>
+<style>
+    body {
+        background: #FFEBF2;
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+        color: #333;
+        padding: 20px;
+    }
+    .container {
+        max-width: 600px;
+        margin: auto;
+        background: #fff;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+        color: #FF69B4;
+        font-size: 2.2rem;
+    }
+    #question {
+        font-size: 1.3rem;
+        margin: 20px 0;
+    }
+    button {
+        background: #FF69B4;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        margin: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #FF48A1;
+    }
+    img {
+        max-width: 120px;
+        margin: 10px;
+    }
+    .note {
+        margin-top: 20px;
+        font-style: italic;
+        color: #AA336A;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>💗 A Question for You 💗</h1>
+    <img src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg" alt="Flowers" title="Flowers">
+    <img src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg" alt="Jello" title="Jello">
+    <div id="question">Will you be my Valentine?</div>
+    <button onclick="handleYes()">Yes</button>
+    <button onclick="handleNo()">No</button>
+    <div id="response"></div>
+</div>
+
+<script>
+let noCount = 0;
+let yesConfirmed = false;
+
+function handleYes() {
+    if (!yesConfirmed) {
+        document.getElementById("question").innerText = "Are you sure?";
+        document.getElementById("response").innerHTML = "";
+        yesConfirmed = true;
+    } else {
+        document.getElementById("question").innerText = "💖 Yay! So happy!";
+        document.getElementById("response").innerHTML = "<p class='note'>You're great and this made my day!</p>";
+    }
+}
+
+function handleNo() {
+    noCount++;
+    if (noCount <= 4) {
+        document.getElementById("question").innerText = "Are you sure? (It’s okay to tell me why!)";
+        let whyInput = "<br><input id='why' placeholder='Tell me why...' style='padding:8px; margin-top:10px; width:80%; border-radius:6px; border:1px solid #ddd;'>"
+                     + "<br><button onclick='submitWhy()'>Submit</button>";
+        document.getElementById("response").innerHTML = whyInput;
+    } else {
+        document.getElementById("question").innerText = "I understand. Thank you for being honest 😊";
+        document.getElementById("response").innerHTML = "";
+    }
+}
+
+function submitWhy() {
+    const whyText = document.getElementById("why").value;
+    document.getElementById("response").innerHTML = "<p class='note'>Thanks for sharing: “" + whyText + "”</p>";
+}
+</script>
+</body>
+</html>
